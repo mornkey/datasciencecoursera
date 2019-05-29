@@ -17,3 +17,16 @@ names(y)<- c('first','second','third')
 # matrix can have dim name
 m <- matrix(1:4,nrow = 2,ncol = 2)
 dimnames(m)<- list(c('a','b'),c('c','d'))
+
+# dput
+dput(df,file = 'df.R')
+new.df <- dget('df.R') # dget can be used on single object
+
+# dump can be used on multiple objects ( multiple dput in one)
+name <- c('nontapat','nantapon')
+nondf <- data.frame(grade=c(3.2,3,2.8,2.9),subject=c('math','physics','social','arts'))
+dump(c('name','nondf'),file = 'shit.R')
+rm(name,nondf)
+source('shit.R') # read those value back!
+
+
