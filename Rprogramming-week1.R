@@ -29,4 +29,54 @@ dump(c('name','nondf'),file = 'shit.R')
 rm(name,nondf)
 source('shit.R') # read those value back!
 
+# read file
+library(readxl)
+data <- read_excel('mp61_excel230261_20180405_120432.xls', n_max = 600)
 
+# extract subset of R objects
+l <- c('a','z','h','u','r','p','q')
+l[l>'p'] # extract by logical
+u <- l >'p' # logical vector
+x <- list(name1 = 1:4,name2 = 0.6,name3 = 'shit') # extract from list
+x['name1']
+x[['name1']]
+x[['name1']][1]
+x[c(1,3)] # extract specific elements of the list
+x$name1[c(1,3)] # extract sub specific elements of the list
+x[[c(1,2)]] # same 
+
+
+# $ is not replaceable!
+x$name1
+n <- 'name1'
+x$n # results in NULL
+x[[n]] # works
+
+# partial matching
+y <- list(bitch = 1:5, rekt = 6:12)
+y$b # $ can do partial matching
+y[['b',exact=FALSE]] # [[]] also can but with exact = FALSE 
+
+# removing NA value by creating logical vector
+x <- c(1,2,NA,5,6,NA)
+bad <- is.na(x)
+x[!bad]
+
+# removing NA from multiple elements
+x<-c(1,2,NA,3,4,5,NA)
+y<-c('a',NA,'p','z',NA,NA,'t')
+good <- complete.cases(x,y) # complete.cases need same length elements // can also be used with df
+
+data <- read.csv('hw1_data.csv')
+
+yea <- data$Ozone > 31
+
+five <- data$Month == 5
+
+max(data$Ozone[five])
+
+max(data$Ozone[five],na.rm = TRUE)
+
+# swirl 1 basic building blocks : basic, c(), elementwise operations
+# swirl 2 workspace, manage files, dir programmatically
+# swirl 3 create sequence of numbers, elements using :,seq(),seq_along(),rep()
