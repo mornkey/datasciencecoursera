@@ -49,3 +49,46 @@ quantile(x,probs = c(0.25,0.75))
 quantile(y,probs = c(0.3,0.7))
 quantile(z,probs = c(0.2,0.8))
 
+# tapply : apply function to each "GROUP" of data in vector
+x <- c(rnorm(10),runif(10),rnorm(10,1))
+f <- gl(3,10) # generate factor level indicating which group the observation is in
+groupmean <- tapply(x, f, mean) # take mean of each "group" in vector x
+grouprange <- tapply(x, f, range)
+
+weightallstu <- c(48,51,52.3,49.5,50,65,71,68,66,63)
+group <- gl(2,5)
+weightmeanG <- tapply(weightallstu, group, mean)
+
+
+# split : split take vector or object and split by factor into groups
+# can be used to split data before using lapply or sapply
+data <- c(rnorm(10),runif(10),rnorm(10,1))
+f <- gl(3,10)
+data <- split(data,f)
+# create feature for data, try these! *** split always return list
+data$`1`
+data$`2`
+data$`3`
+class(data) # list of 3 elements (3features)
+
+# you can split on more than 1 level
+l1 <- gl(2,5)
+l2 <- gl(5,2)
+interaction(l1,l2)
+# or! u dont have to use interaction
+data <- c(rnorm(10),runif(10),rnorm(10,1))
+split(data,list(l1,l2)) # you will see some that have 0 elements
+split(data,list(l1,l2),drop = T) # now u wont
+
+df <- data.frame(name=c('Non','Nan','Nam','Kai','Ath'),gender=factor(c('M','M','F','F','M')))
+
+# debugging tools,
+log(-1) # warning message
+
+# test
+library(datasets)
+data <- mtcars
+# calculate mpg mean ( grouped by cyl )
+with(data,tapply(mpg,cyl,mean))
+tapply(mtcars$mpg,mtcars$cyl,mean)
+
