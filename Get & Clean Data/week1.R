@@ -14,3 +14,4 @@ cameraData <- read.table('D:/datasciencecoursera/Get & Clean Data/camera.csv',se
 head(cameraData)
 
 # reading XML : extensible markup language
+# tmr
