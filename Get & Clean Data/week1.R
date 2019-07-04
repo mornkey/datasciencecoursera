@@ -55,3 +55,5 @@ names(jsonData$license)
 # you can turn R dataframe into JSON df
 myjson <- toJSON(iris,pretty = T)
 cat(myjson)
+# and convert back to R df
+iris2 <- fromJSON(myjson)
