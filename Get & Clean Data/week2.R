@@ -108,4 +108,4 @@ names(pg2)
 # using handles : you authenticate this handle 1 time then the cookies will stay with this handle and you will be authenticated, you dont have to keep authenticating over and over again as you access the website 
 google <- handle('http://google.com') 
 pg1 <- GET(handle = google,path='/')
-pg2 <- GET(handle=google,path='search')
+pg2 <- GET(handle=google,path='search') 
