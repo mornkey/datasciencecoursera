@@ -105,3 +105,36 @@ summarize(n,disp=mean(disp),wt_max=max(wt),quan=quantile(qsec,c(0.25))) # summar
 ### PIPELINE operator : chain operations together, feed dataset through a pipeline to create a new dataset
 # dont need to input 1 arg as df as using PIPELINE operations
 mtcars %>% mutate(dispDetrend = disp-mean(disp,na.rm = T)) %>% mutate(fac = factor(1*(dispDetrend>0),levels = c(1,0),labels=c('pos','neg'))) %>% group_by(fac) %>% summarize(disp=mean(disp),wt_max=max(wt),quan=quantile(qsec,c(0.25)))
+
+
+# merge df
+x <- data.frame(id = 1:10,val = sample(rnorm(3),10,replace = T))
+y <- data.frame(myId = 1:10,data=seq(0,90,by=10))
+z <- merge(x,y,by.x='id',by.y = 'myId')
+# or use join in plyr package
+
+
+### quiz ###
+data <- read.csv('getdata_data_ss06hid.csv')
+logic <- data$ACR==3 & data$AGS == 6
+which(logic)
+
+myurl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg"
+z <- tempfile()
+download.file(myurl,z,mode="wb")
+pic <- readJPEG(z,native = TRUE)
+file.remove(z) # cleanup
+
+quantile(pic,c(0.3,0.8))
+
+
+GDP <- read.csv('getdata_data_GDP.csv')
+EDU <- read.csv('getdata_data_EDSTATS_Country.csv')
+
+df <- merge(GDP,EDU,by.x = 'X',by.y = 'CountryCode')
+df <- arrange(df,desc(df$Gross.domestic.product.2012))
+
+
+tapply(as.numeric(df$Gross.domestic.product.2012),df$Income.Group,mean)
+
+
