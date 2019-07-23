@@ -14,7 +14,7 @@ y <- rbind(y_train,y_test)
 
 # get only mean() and std() from feature
 id <- grep('mean[[:punct:]]{2}|std[[:punct:]]{2}',feature[1:561,])
-data <- data[,id+1] # 66 columns remain
+data <- x[,id] # 66 columns remain
 
 # convert y value to descriptive name
 factor <- read.delim('./UCI HAR Dataset/activity_labels.txt',header = FALSE)
@@ -31,4 +31,5 @@ for(i in 2:67){
 }
 df$matrix.nrow...6.<-NULL
 colnames(df) <- colnames(data[,2:67])
- 
+
+write.table(df,file = "dataset.txt",row.names = FALSE)
