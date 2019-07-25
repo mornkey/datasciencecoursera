@@ -12,7 +12,11 @@ output: html_document
 ```
 evidence for a hypothesis is always relative to another competing hypothesis. so whenever you hear a statement or evidence based on data, always ask " compared to what? "
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r setup, include=FALSE}
+2. Show causality, mechanism, explanation, systematic structure
+```
+what is your causal frameward for thinking about a question?
+use graphics plot that might corroborate to the hypothesis that you believed in.
 
 ```{r cars}
 summary(cars)
